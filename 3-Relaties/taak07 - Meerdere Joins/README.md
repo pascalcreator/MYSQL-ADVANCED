@@ -31,10 +31,24 @@ In de `db-export` map staat weer een database export klaar. Importeer deze in ee
 ## Opdracht
 
 1. Maak een overzicht van de naam, het platform en het genre van alle games die beginnen met de letter `b`.
+
+    SELECT game.name, platform.platform, genre.genre FROM game LEFT JOIN platform ON game.platform_id = platform.id LEFT JOIN genre ON game.genre_id = genre.id WHERE game.name LIKE "b%"
+
 2. Maak een overzicht van de naam, het platform en de publisher van alle spellen die zijn uitgekomen in 2013. Zorg ervoor dat de laatste kolom ook nog het jaar laat zien.
+
+    SELECT game.name, platform.platform, publisher.publisher, year FROM game LEFT JOIN platform ON game.platform_id = platform.id LEFT JOIN publisher ON game.publisher_id = publisher.id WHERE year=2013
+
 3. Maak een overzicht van alle spellen die zijn uitgekomen in het `Puzzle` genre na het jaar 2000. Toon de naam, het genre, het jaar en het aantal verkopen wereldwijd.
+
+    SELECT game.name, platform.platform, genre.genre, year, global_sales FROM game LEFT JOIN platform ON game.platform_id = platform.id LEFT JOIN genre ON game.genre_id = genre.id WHERE genre.genre='puzzle' AND year>2000
+
 4. Maak een overzicht met alle spellen die beginnen met `Mario` waarin je het platform, het jaar van uitgave, het genre, de publisher en het aantal verkopen in Japan laat zien.
+
+    SELECT game.name, platform.platform, publisher.publisher, year, jp_sales FROM game LEFT JOIN platform ON game.platform_id = platform.id LEFT JOIN publisher ON game.publisher_id = publisher.id WHERE game.name LIKE 'mario%' 
+
 5. Maak een overzicht van alle spellen die zijn uitgekomen voor het `PC` platform waarin je de naam laat zien, het genre, de publisher en het jaar van uitgave.
+
+    SELECT game.name, platform.platform, publisher.publisher, genre.genre, year FROM game LEFT JOIN platform ON game.platform_id = platform.id LEFT JOIN publisher ON game.publisher_id = publisher.id LEFT JOIN genre ON game.genre_id = genre.id WHERE platform.platform='PC' 
 
 ## Bronnen
 [W#Schools SQL Joins](https://www.w3schools.com/sql/sql_join.asp)
